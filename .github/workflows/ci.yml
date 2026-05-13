@@ -1,0 +1,21 @@
+name: CI Pipeline
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 拉取仓库代码
+      - uses: actions/checkout@v4
+      # 2. 配置Python环境
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      # 3. 直接运行两个Python脚本（替代单元测试）
+      - name: Run before.py
+        run: python before.py
+      - name: Run after.py
+        run: python after.py

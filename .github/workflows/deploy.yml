@@ -31,10 +31,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-       - name: Build and push Docker image
-         run: |
+      - name: Build and push Docker image
+        run: |
           SHORT_SHA=$(git rev-parse --short HEAD)
-          DOCKER_USER=Ya105
+          # 固定Docker Hub英文账号名 ya105
+          DOCKER_USER=ya105
           docker build -t $DOCKER_USER/se-web-app:latest .
           docker tag $DOCKER_USER/se-web-app:latest $DOCKER_USER/se-web-app:$SHORT_SHA
           docker push $DOCKER_USER/se-web-app:latest
